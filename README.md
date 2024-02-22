@@ -19,16 +19,16 @@ npm install
 Após instalar as dependências e configurar o arquivo `.env`, você pode iniciar o servidor localmente executando o seguinte comando:
 
 ```
-npm start
+npm run dev
 ```
 
-O servidor será iniciado e estará acessível em `http://localhost:3000`. Você pode interagir com a API através desta URL.
+O servidor será iniciado e estará acessível em `http://localhost:{PORT}`. Você pode interagir com a API através desta URL.
 
-Além disso, a documentação da API está disponível em `http://localhost:3000/api-docs`, onde você pode visualizar e testar as rotas da API usando o Swagger UI.
+Além disso, a documentação da API está disponível em `http://localhost:{PORT}/api-docs`, onde você pode visualizar e testar as rotas da API usando o Swagger UI.
 
 ## Documentação da API
 
-A documentação da API é gerada automaticamente usando o Swagger. Você pode acessá-la em `http://localhost:3000/api-docs` ou diretamente na raiz do servidor após a implantação.
+A documentação da API é gerada automaticamente usando o Swagger. Você pode acessá-la em `http://localhost:{PORT}/api-docs`.
 
 ## Contribuição
 

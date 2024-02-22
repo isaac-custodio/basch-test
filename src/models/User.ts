@@ -1,18 +1,21 @@
 import sequelize from "../app/config/sequelize";
-import Permission from "./Permission";
 
 import { DataTypes, Model } from "sequelize";
 
-interface UserAttributes {
-  id: number;
+export interface UserAttributes {
+  id?: number;
   username: string;
   password: string;
+  email?: string;
+  name?: string;
 }
 
 class User extends Model<UserAttributes> implements UserAttributes {
   public id!: number;
   public username!: string;
   public password!: string;
+  public email?: string;
+  public name?: string;
 }
 
 User.init(
@@ -30,6 +33,14 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,
@@ -39,7 +50,5 @@ User.init(
     underscored: true,
   }
 );
-
-User.belongsToMany(Permission, { through: "UserPermission" });
 
 export default User;

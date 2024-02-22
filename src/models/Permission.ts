@@ -4,10 +4,12 @@ import User from "./User";
 
 import { DataTypes, Model } from "sequelize";
 
-interface PermissionAttributes {
-  id: number;
+export interface PermissionAttributes {
+  id?: number;
   description: string;
   title: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 class Permission
@@ -43,8 +45,5 @@ Permission.init(
     underscored: true,
   }
 );
-
-Permission.belongsToMany(User, { through: "UserPermission" });
-Permission.belongsToMany(Screen, { through: "PermissionScreen" });
 
 export default Permission;

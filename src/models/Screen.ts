@@ -3,10 +3,10 @@ import Permission from "./Permission";
 
 import { DataTypes, Model } from "sequelize";
 
-interface ScreenAttributes {
-  id: number;
+export interface ScreenAttributes {
+  id?: number;
   name: string;
-  description: string;
+  description?: string;
   url: string;
 }
 
@@ -45,7 +45,5 @@ Screen.init(
     underscored: true,
   }
 );
-
-Screen.belongsToMany(Permission, { through: "PermissionScreen" });
 
 export default Screen;

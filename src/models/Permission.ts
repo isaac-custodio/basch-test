@@ -8,8 +8,8 @@ export interface PermissionAttributes {
   id?: number;
   description: string;
   title: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 class Permission
@@ -19,6 +19,8 @@ class Permission
   public id!: number;
   public title!: string;
   public description!: string;
+  public created_at?: Date;
+  public updated_at?: Date;
 }
 
 Permission.init(

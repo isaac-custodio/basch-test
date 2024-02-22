@@ -8,6 +8,8 @@ export interface UserAttributes {
   password: string;
   email?: string;
   name?: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 class User extends Model<UserAttributes> implements UserAttributes {
@@ -16,6 +18,8 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public password!: string;
   public email?: string;
   public name?: string;
+  public created_at?: Date;
+  public updated_at?: Date;
 }
 
 User.init(

@@ -1,5 +1,4 @@
 import sequelize from "../app/config/sequelize";
-import Permission from "./Permission";
 
 import { DataTypes, Model } from "sequelize";
 
@@ -8,6 +7,8 @@ export interface ScreenAttributes {
   name: string;
   description?: string;
   url: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 class Screen extends Model<ScreenAttributes> implements ScreenAttributes {
@@ -15,6 +16,8 @@ class Screen extends Model<ScreenAttributes> implements ScreenAttributes {
   public name!: string;
   public description!: string;
   public url!: string;
+  public created_at?: Date;
+  public updated_at?: Date;
 }
 
 Screen.init(

@@ -1,7 +1,8 @@
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import session, { SessionData } from "express-session";
 import swaggerUi from "swagger-ui-express";
+import isAdmin from "./middleware/isAdmin";
 
 import { config } from "dotenv";
 import { isAuth } from "./middleware/isAuth";
@@ -14,7 +15,6 @@ import { UserRouter } from "../routes/users";
 import { swaggerDocs } from "./config/swagger";
 import { UserPermissionRouter } from "../routes/userPermission";
 
-import isAdmin from "./middleware/isAdmin";
 import { ScreenPermissionRouter } from "../routes/screenPermission";
 
 export interface CustomSessionData extends SessionData {
@@ -55,7 +55,7 @@ app.use(cors());
 /**
  * @swagger
  * tags:
- *   name: Auth
+ *   name: /
  *   description: Rotas relacionadas à autenticação
  */
 app.use("/", AuthRouter);
@@ -63,7 +63,7 @@ app.use("/", AuthRouter);
 /**
  * @swagger
  * tags:
- *   name: Permissions
+ *   name: /permissions/
  *   description: Rotas relacionadas à gerência de permissões
  */
 app.use("/permissions", isAuth, PermissionRouter);
@@ -71,7 +71,7 @@ app.use("/permissions", isAuth, PermissionRouter);
 /**
  * @swagger
  * tags:
- *   name: Screens
+ *   name: /screens
  *   description: Rotas relacionadas à gerência de telas
  */
 app.use("/screens", isAuth, ScreenRouter);
@@ -79,7 +79,7 @@ app.use("/screens", isAuth, ScreenRouter);
 /**
  * @swagger
  * tags:
- *   name: Users
+ *   name: /users
  *   description: Rotas relacionadas à gerência de usuários
  */
 app.use("/users", isAuth, UserRouter);
@@ -87,7 +87,7 @@ app.use("/users", isAuth, UserRouter);
 /**
  * @swagger
  * tags:
- *   name: User Permissions
+ *   name: /userPermissions
  *   description: Rotas relacionadas à gerência de permissões de usuários
  */
 app.use("/userPermissions", isAuth, UserPermissionRouter);
@@ -95,7 +95,7 @@ app.use("/userPermissions", isAuth, UserPermissionRouter);
 /**
  * @swagger
  * tags:
- *   name: Screen Permissions
+ *   name: /screenPermissions
  *   description: Rotas relacionadas à gerência de permissões de tela
  */
 app.use("/screenPermissions", isAuth, isAdmin, ScreenPermissionRouter);

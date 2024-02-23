@@ -9,7 +9,7 @@ Esta é uma API de exemplo para demonstrar como criar uma aplicação Node.js co
 3. Clone este repositório para o seu ambiente local.
 4. No diretório raiz do projeto, faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha as variáveis de ambiente conforme necessário para configurar o projeto, incluindo o nome do banco de dados PostgreSQL.
 5. Execute o seguinte comando para instalar as dependências:
-6. Opcionalmente, você pode executar um build do projeto antes de iniciar o servidor. Para fazer isso, execute o seguinte comando:
+6. Execute um build do projeto antes de iniciar o servidor. Para fazer isso, execute o seguinte comando:
 
 ```
 npm run build

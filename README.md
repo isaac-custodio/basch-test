@@ -14,9 +14,11 @@ npm install
 
 4. Faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha os valores das variáveis de ambiente conforme necessário para configurar o projeto.
 
+5. Execute as primeiras inserções do banco de dados executando o script SQL fornecido em `first-setup.sql`. Este script SQL pode ser usado para configurar o banco de dados com as tabelas e dados iniciais necessários para a aplicação.
+
 ## Uso
 
-Após instalar as dependências e configurar o arquivo `.env`, você pode iniciar o servidor localmente executando o seguinte comando:
+Após instalar as dependências, configurar o arquivo `.env` e executar as primeiras inserções no banco de dados, você pode iniciar o servidor localmente executando o seguinte comando:
 
 ```
 npm run dev

@@ -62,7 +62,7 @@ export async function findUserById(req: Request, res: Response) {
       return res.status(404).json({ error: "Usuário não encontrado" });
     }
 
-    return res.status(200).json(user);
+    return res.status(200).json({ ...user, password: null });
   } catch (error) {
     return res.status(500).json({
       error: "Erro ao buscar usuário pelo id",
@@ -72,10 +72,14 @@ export async function findUserById(req: Request, res: Response) {
 
 export async function listUsers(req: Request, res: Response) {
   try {
-    const users = await User.findAll();
-    return res
-      .status(200)
-      .json({ message: "Lista de usuários atualizada com sucesso", users });
+    const users = (await User.findAll()).map((user) => ({
+      ...user.toJSON(),
+      password: null,
+    }));
+    return res.status(200).json({
+      message: "Lista de usuários atualizada com sucesso",
+      data: users,
+    });
   } catch (error) {
     return res.status(500).json({
       error: "Erro ao atualizar lista de usuários",

@@ -26,7 +26,7 @@ export const PermissionRouter = Router();
  *     description: Adiciona uma nova permissão ao sistema.z
  *     tags: [Permissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -106,10 +106,10 @@ PermissionRouter.get("/:id", findPermissionById);
  * /permissions/{id}:
  *   delete:
  *     summary: Remover permissão
- *     description: Remove uma permissão específica do sistema.z
+ *     description: Remove uma permissão específica do sistema.
  *     tags: [Permissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -141,7 +141,7 @@ PermissionRouter.delete("/:id", isAdmin, removePermission);
  *     description: Atualiza uma permissão específica do sistema.z
  *     tags: [Permissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

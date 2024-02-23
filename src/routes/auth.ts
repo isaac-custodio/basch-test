@@ -34,7 +34,7 @@ export const AuthRouter = Router();
  *                 description: Senha do usuário
  *     responses:
  *       '200':
- *         description: Login realizado com sucesso
+ *         description: Sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -45,12 +45,13 @@ export const AuthRouter = Router();
  *                   description: Token de acesso gerado após o login
  *             example:
  *               token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
- *               message: "Vo"
+ *               message: "Você fez login na Basch Test API"
+ *
  */
 AuthRouter.post("/login", login);
 
 /**
- * @openapi
+ * @swagger
  * /auth/me:
  *   get:
  *     summary: Obter informações do usuário atual
@@ -94,7 +95,7 @@ AuthRouter.get("/me", isAuth, getMyUser);
  *     description: Recupera as permissões associadas ao usuário logado.
  *     tags: [Auth]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       '200':
  *         description: Operação bem-sucedida
@@ -111,24 +112,3 @@ AuthRouter.get("/me", isAuth, getMyUser);
  */
 
 AuthRouter.get("/me/permissions", isAuth, getMyUserPermissions);
-
-/**
- *
- * components:
- *   schemas:
- *     UserAttributes:
- *       type: object
- *       properties:
- *         id:
- *           type: number
- *           description: ID do usuário
- *         username:
- *           type: string
- *           description: Nome de usuário
- *         email:
- *           type: string
- *           description: Endereço de e-mail do usuário
- *         name:
- *           type: string
- *           description: Nome completo do usuário
- */

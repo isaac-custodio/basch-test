@@ -63,7 +63,12 @@ export async function getMyUser(
     if (!user) {
       throw res.status(404).json({ error: "Usuário não encontrado" });
     }
-    return res.status(200).json(user);
+
+    const { username, createdAt, email, id, name, updatedAt } = user;
+
+    return res
+      .status(200)
+      .json({ username, createdAt, email, id, name, updatedAt });
   } catch (error) {
     throw res.status(500).json({ error: "Erro interno no servidor" });
   }

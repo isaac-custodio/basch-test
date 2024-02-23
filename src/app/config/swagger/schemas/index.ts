@@ -27,6 +27,12 @@
  *           type: string
  *         url:
  *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
  *     PermissionAttributes:
  *       type: object
  *       properties:
@@ -35,6 +41,25 @@
  *         description:
  *           type: string
  *         title:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *     UserAttributes:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: number
+ *         username:
+ *           type: string
+ *         email:
+ *           type: string
+ *         password:
+ *           type: string
+ *         name:
  *           type: string
  *         createdAt:
  *           type: string

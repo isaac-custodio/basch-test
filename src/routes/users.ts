@@ -24,6 +24,8 @@ export const UserRouter = Router();
  *     summary: Criar usuário
  *     description: Cria um novo usuário com os dados fornecidos.
  *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []  # Especifica a autenticação Bearer para esta rota
  *     requestBody:
  *       required: true
  *       content:
@@ -56,7 +58,7 @@ UserRouter.post("/", createUser);
  *     description: Retorna os detalhes de um usuário com base no ID fornecido.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -91,7 +93,7 @@ UserRouter.get("/:id", findUserById);
  *     description: Retorna uma lista de todos os usuários cadastrados no sistema.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       '200':
  *         description: Lista de usuários recuperada com sucesso
@@ -118,7 +120,7 @@ UserRouter.get("/", listUsers);
  *     description: Remove um usuário existente com base no ID fornecido.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -149,7 +151,7 @@ UserRouter.delete("/:id", removeUser);
  *     description: Atualiza os dados de um usuário existente com base no ID fornecido.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id

@@ -25,7 +25,7 @@ export const ScreenPermissionRouter = Router();
  *     description: Retorna a lista de permissões associadas a uma tela específica.
  *     tags: [ScreenPermissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: screenPermissionId
@@ -63,7 +63,7 @@ ScreenPermissionRouter.get("/:screenId", isAdmin, listScreenPermissions);
  *     description: Associa uma permissão específica a uma tela específica.
  *     tags: [ScreenPermissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: screenPermissionId
@@ -106,7 +106,7 @@ ScreenPermissionRouter.post(
  *     description: Remove a associação entre uma permissão específica e uma tela específica.
  *     tags: [ScreenPermissions]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: screenPermissionId

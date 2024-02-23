@@ -11,6 +11,13 @@ import isAdmin from "../app/middleware/isAdmin";
 export const ScreenPermissionRouter = Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: /screenPermissions
+ *   description: Rotas relacionadas à gerência de permissões de tela
+ */
+
+/**
  * @openapi
  * /screenPermissions/{screenId}:
  *   get:

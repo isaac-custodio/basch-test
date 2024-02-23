@@ -12,6 +12,13 @@ export const UserRouter = Router();
 
 /**
  * @swagger
+ * tags:
+ *   name: /users
+ *   description: Rotas relacionadas à gerência de usuários
+ */
+
+/**
+ * @swagger
  * /users:
  *   post:
  *     summary: Criar usuário

@@ -15,6 +15,13 @@ import isAdmin from "../app/middleware/isAdmin";
 export const ScreenRouter = Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: /screens
+ *   description: Rotas relacionadas à gerência de telas
+ */
+
+/**
  * @openapi
  * /screens:
  *   post:
@@ -37,7 +44,6 @@ export const ScreenRouter = Router();
  *       '401':
  *         description: Não autorizado - permissões de administrador necessárias
  */
-
 ScreenRouter.post("/", isAdmin, addScreen);
 
 /**
@@ -58,7 +64,6 @@ ScreenRouter.post("/", isAdmin, addScreen);
  *               items:
  *                 $ref: '#/components/schemas/Screen'
  */
-
 ScreenRouter.get("/", listScreens);
 
 /**
@@ -87,7 +92,6 @@ ScreenRouter.get("/", listScreens);
  *       '404':
  *         description: Tela não encontrada
  */
-
 ScreenRouter.get("/:id", hasScreenPermission, findScreenById);
 
 /**
@@ -123,7 +127,6 @@ ScreenRouter.get("/:id", hasScreenPermission, findScreenById);
  *       '404':
  *         description: Tela não encontrada
  */
-
 ScreenRouter.put("/:id", isAdmin, updateScreen);
 
 /**
@@ -151,5 +154,4 @@ ScreenRouter.put("/:id", isAdmin, updateScreen);
  *       '404':
  *         description: Tela não encontrada
  */
-
 ScreenRouter.delete("/:id", isAdmin, removeScreen);

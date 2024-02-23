@@ -11,6 +11,13 @@ import isAdmin from "../app/middleware/isAdmin";
 export const UserPermissionRouter = Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: /userPermissions
+ *   description: Rotas relacionadas à gerência de permissões de usuários
+ */
+
+/**
  * @openapi
  * /userPermissions/{userId}:
  *   get:

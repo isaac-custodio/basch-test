@@ -6,6 +6,13 @@ import { isAuth } from "../app/middleware/isAuth";
 export const AuthRouter = Router();
 
 /**
+ * @swagger
+ * tags:
+ *   name: /
+ *   description: Rotas relacionadas à autenticação
+ */
+
+/**
  * @openapi
  * /login:
  *   post:

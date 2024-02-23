@@ -27,6 +27,7 @@ export const ScreenRouter = Router();
  *   post:
  *     summary: Adicionar uma nova tela
  *     description: Adiciona uma nova tela ao sistema
+ *     tags: [Screens]
  *     requestBody:
  *       required: true
  *       content:
@@ -52,6 +53,7 @@ ScreenRouter.post("/", isAdmin, addScreen);
  *   get:
  *     summary: Listar todas as telas
  *     description: Retorna uma lista de todas as telas disponíveis no sistema
+ *     tags: [Screens]
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -72,6 +74,7 @@ ScreenRouter.get("/", listScreens);
  *   get:
  *     summary: Obter tela por ID
  *     description: Retorna os detalhes de uma tela específica com base no ID fornecido
+ *     tags: [Screens]
  *     parameters:
  *       - in: path
  *         name: id
@@ -100,6 +103,7 @@ ScreenRouter.get("/:id", hasScreenPermission, findScreenById);
  *   put:
  *     summary: Atualizar tela por ID
  *     description: Atualiza os detalhes de uma tela específica com base no ID fornecido
+ *     tags: [Screens]
  *     parameters:
  *       - in: path
  *         name: id
@@ -135,6 +139,7 @@ ScreenRouter.put("/:id", isAdmin, updateScreen);
  *   delete:
  *     summary: Excluir tela por ID
  *     description: Exclui uma tela específica com base no ID fornecido
+ *     tags: [Screens]
  *     parameters:
  *       - in: path
  *         name: id

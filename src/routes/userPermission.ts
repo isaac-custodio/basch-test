@@ -22,7 +22,8 @@ export const UserPermissionRouter = Router();
  * /userPermissions/{userId}:
  *   get:
  *     summary: Listar permissões do usuário
- *     description: Retorna a lista de permissões associadas a um usuário específico.
+ *     description: Retorna a lista de permissões associadas a um usuário específico.z
+ *     tags: [UserPermissions]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -59,7 +60,8 @@ UserPermissionRouter.get("/:userId", isAdmin, listUserPermissions);
  * /userPermission/{userId}/{permissionId}:
  *   post:
  *     summary: Adicionar permissão a usuário
- *     description: Associa uma permissão específica a um usuário específico.
+ *     description: Associa uma permissão específica a um usuário específico.z
+ *     tags: [UserPermissions]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -97,7 +99,8 @@ UserPermissionRouter.post("/:userId/:permissionId", isAdmin, addUserPermission);
  * /userPermissions/{userId}/{permissionId}:
  *   delete:
  *     summary: Remover permissão de usuário
- *     description: Remove a associação entre uma permissão específica e um usuário específico.
+ *     description: Remove a associação entre uma permissão específica e um usuário específico.z
+ *     tags: [UserPermissions]
  *     security:
  *       - bearerAuth: []
  *     parameters:

@@ -18,6 +18,7 @@ export const AuthRouter = Router();
  *   post:
  *     summary: Login na API
  *     description: Autentica o usuário e gera o token de acesso
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -54,6 +55,7 @@ AuthRouter.post("/login", login);
  *   get:
  *     summary: Obter informações do usuário atual
  *     description: Recupera detalhes do usuário autenticado no momento
+ *     tags: [Auth]
  *     security:
  *       - BearerAuth: []
  *     responses:
@@ -90,6 +92,7 @@ AuthRouter.get("/me", isAuth, getMyUser);
  *   get:
  *     summary: Obter permissões do usuário logado
  *     description: Recupera as permissões associadas ao usuário logado.
+ *     tags: [Auth]
  *     security:
  *       - bearerAuth: []
  *     responses:

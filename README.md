@@ -18,7 +18,7 @@ npm run build
 7. Inicie o servidor localmente executando o seguinte comando:
 
 ```
-npm run dev
+npm run start
 ```
 
 8. Após iniciar o servidor, execute as primeiras inserções no banco de dados executando o script SQL fornecido em `first-setup.sql`. Este script SQL pode ser usado para configurar o banco de dados com as tabelas e dados iniciais necessários para a aplicação.

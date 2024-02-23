@@ -50,11 +50,54 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
+
+// Defina a descrição do grupo de rotas
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Rotas relacionadas à autenticação
+ */
 app.use("/", AuthRouter);
+
+/**
+ * @swagger
+ * tags:
+ *   name: Permissions
+ *   description: Rotas relacionadas à gerência de permissões
+ */
 app.use("/permissions", isAuth, PermissionRouter);
+
+/**
+ * @swagger
+ * tags:
+ *   name: Screens
+ *   description: Rotas relacionadas à gerência de telas
+ */
 app.use("/screens", isAuth, ScreenRouter);
+
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: Rotas relacionadas à gerência de usuários
+ */
 app.use("/users", isAuth, UserRouter);
+
+/**
+ * @swagger
+ * tags:
+ *   name: User Permissions
+ *   description: Rotas relacionadas à gerência de permissões de usuários
+ */
 app.use("/userPermissions", isAuth, UserPermissionRouter);
+
+/**
+ * @swagger
+ * tags:
+ *   name: Screen Permissions
+ *   description: Rotas relacionadas à gerência de permissões de tela
+ */
 app.use("/screenPermissions", isAuth, isAdmin, ScreenPermissionRouter);
 
 export default app;

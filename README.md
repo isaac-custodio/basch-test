@@ -6,24 +6,29 @@ Esta é uma API de exemplo para demonstrar como criar uma aplicação Node.js co
 
 1. Certifique-se de ter o Node.js instalado em sua máquina. Você pode baixá-lo em [nodejs.org](https://nodejs.org/).
 2. Clone este repositório para o seu ambiente local.
-3. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências:
+3. No diretório raiz do projeto, faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha os valores das variáveis de ambiente conforme necessário para configurar o projeto.
+4. Execute o seguinte comando para instalar as dependências:
 
 ```
 npm install
 ```
 
-4. Faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha os valores das variáveis de ambiente conforme necessário para configurar o projeto.
+5. Após a instalação das dependências, crie um banco de dados PostgreSQL conforme necessário para a aplicação.
+6. Opcionalmente, você pode executar um build do projeto antes de iniciar o servidor. Para fazer isso, execute o seguinte comando:
 
-5. Execute as primeiras inserções do banco de dados executando o script SQL fornecido em `first-setup.sql`. Este script SQL pode ser usado para configurar o banco de dados com as tabelas e dados iniciais necessários para a aplicação.
+```
+npm run build
+```
 
-## Uso
-
-Após instalar as dependências, configurar o arquivo `.env` e executar as primeiras inserções no banco de dados, você pode iniciar o servidor localmente executando o seguinte comando:
-/
+7. Inicie o servidor localmente executando o seguinte comando:
 
 ```
 npm run dev
 ```
+
+8. Após iniciar o servidor, execute as primeiras inserções no banco de dados executando o script SQL fornecido em `first-setup.sql`. Este script SQL pode ser usado para configurar o banco de dados com as tabelas e dados iniciais necessários para a aplicação.
+
+## Uso
 
 O servidor será iniciado e estará acessível em `http://localhost:{PORT}`. Você pode interagir com a API através desta URL.
 

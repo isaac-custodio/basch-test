@@ -25,6 +25,42 @@ const swaggerOptions: SwaggerOptions = {
     "src/routes/*.ts",
     "src/app/config/swagger/schemas/*.ts",
   ],
+  components: {
+    responses: {
+      UnauthorizedError: {
+        description: "Mensagem de erro de autorização",
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: "string",
+                  description: "Descrição do erro",
+                },
+              },
+            },
+          },
+        },
+      },
+      InternalServerError: {
+        description: "Mensagem de erro interno do servidor",
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                error: {
+                  type: "string",
+                  description: "Descrição do erro",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const swaggerDocs = swaggerJsDoc(swaggerOptions);

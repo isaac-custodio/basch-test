@@ -19,6 +19,7 @@ npm install
 ## Uso
 
 Após instalar as dependências, configurar o arquivo `.env` e executar as primeiras inserções no banco de dados, você pode iniciar o servidor localmente executando o seguinte comando:
+/
 
 ```
 npm run dev
@@ -27,6 +28,8 @@ npm run dev
 O servidor será iniciado e estará acessível em `http://localhost:{PORT}`. Você pode interagir com a API através desta URL.
 
 Além disso, a documentação da API está disponível em `http://localhost:{PORT}/docs`, onde você pode visualizar e testar as rotas da API usando o Swagger UI.
+
+![Fazendo login pelo Swagger](./public/media/gifs/swagger-example.gif)
 
 ## Documentação da API
 

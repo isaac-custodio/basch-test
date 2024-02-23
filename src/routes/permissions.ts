@@ -14,7 +14,7 @@ export const PermissionRouter = Router();
 /**
  * @swagger
  * tags:
- *   name: /permissions/
+ *   name: Permissions
  *   description: Rotas relacionadas à gerência de permissões
  */
 

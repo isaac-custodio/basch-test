@@ -17,7 +17,7 @@ export const ScreenRouter = Router();
 /**
  * @swagger
  * tags:
- *   name: /screens
+ *   name: Screens
  *   description: Rotas relacionadas à gerência de telas
  */
 

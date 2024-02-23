@@ -50,8 +50,7 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-
-app.use("/", AuthRouter);
+app.use("/auth", AuthRouter);
 app.use("/permissions", isAuth, PermissionRouter);
 app.use("/screens", isAuth, ScreenRouter);
 app.use("/users", isAuth, UserRouter);

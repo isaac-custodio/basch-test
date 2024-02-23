@@ -13,7 +13,7 @@ export const ScreenPermissionRouter = Router();
 /**
  * @swagger
  * tags:
- *   name: /screenPermissions
+ *   name: ScreenPermissions
  *   description: Rotas relacionadas à gerência de permissões de tela
  */
 

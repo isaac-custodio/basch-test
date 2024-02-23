@@ -8,13 +8,13 @@ export const AuthRouter = Router();
 /**
  * @swagger
  * tags:
- *   name: /
+ *   name: Auth
  *   description: Rotas relacionadas à autenticação
  */
 
 /**
  * @openapi
- * /login:
+ * /auth/login:
  *   post:
  *     summary: Login na API
  *     description: Autentica o usuário e gera o token de acesso
@@ -50,7 +50,7 @@ AuthRouter.post("/login", login);
 
 /**
  * @openapi
- * /me:
+ * /auth/me:
  *   get:
  *     summary: Obter informações do usuário atual
  *     description: Recupera detalhes do usuário autenticado no momento
@@ -86,7 +86,7 @@ AuthRouter.get("/me", isAuth, getMyUser);
 
 /**
  * @openapi
- * /me/permissions:
+ * /auth/me/permissions:
  *   get:
  *     summary: Obter permissões do usuário logado
  *     description: Recupera as permissões associadas ao usuário logado.

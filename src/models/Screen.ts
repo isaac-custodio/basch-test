@@ -7,17 +7,17 @@ export interface ScreenAttributes {
   name: string;
   description?: string;
   url: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-class Screen extends Model<ScreenAttributes> implements ScreenAttributes {
-  public id!: number;
-  public name!: string;
-  public description!: string;
-  public url!: string;
-  public created_at?: Date;
-  public updated_at?: Date;
+class Screen extends Model<ScreenAttributes> {
+  declare id?: number;
+  declare name: string;
+  declare description?: string;
+  declare url: string;
+  declare createdAt?: Date;
+  declare updatedAt?: Date;
 }
 
 Screen.init(

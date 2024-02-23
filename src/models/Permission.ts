@@ -1,6 +1,4 @@
 import sequelize from "../app/config/sequelize";
-import Screen from "./Screen";
-import User from "./User";
 
 import { DataTypes, Model } from "sequelize";
 
@@ -8,19 +6,16 @@ export interface PermissionAttributes {
   id?: number;
   description: string;
   title: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-class Permission
-  extends Model<PermissionAttributes>
-  implements PermissionAttributes
-{
-  public id!: number;
-  public title!: string;
-  public description!: string;
-  public created_at?: Date;
-  public updated_at?: Date;
+class Permission extends Model<PermissionAttributes> {
+  declare id?: number;
+  declare title: string;
+  declare description: string;
+  declare createdAt?: Date;
+  declare updatedAt?: Date;
 }
 
 Permission.init(

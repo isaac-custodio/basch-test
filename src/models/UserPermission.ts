@@ -7,12 +7,9 @@ interface UserPermissionAttributes {
   permissionId: number;
 }
 
-class UserPermission
-  extends Model<UserPermissionAttributes>
-  implements UserPermissionAttributes
-{
-  public userId!: number;
-  public permissionId!: number;
+class UserPermission extends Model<UserPermissionAttributes> {
+  declare userId: number;
+  declare permissionId: number;
 }
 
 UserPermission.init(

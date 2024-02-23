@@ -4,22 +4,22 @@ import { DataTypes, Model } from "sequelize";
 
 export interface UserAttributes {
   id?: number;
+  name?: string;
   username: string;
   password: string;
   email?: string;
-  name?: string;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-class User extends Model<UserAttributes> implements UserAttributes {
-  public id!: number;
-  public username!: string;
-  public password!: string;
-  public email?: string;
-  public name?: string;
-  public created_at?: Date;
-  public updated_at?: Date;
+class User extends Model<UserAttributes> {
+  declare id?: number;
+  declare name?: string;
+  declare username: string;
+  declare password: string;
+  declare email?: string;
+  declare createdAt?: Date;
+  declare updatedAt?: Date;
 }
 
 User.init(

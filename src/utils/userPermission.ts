@@ -1,28 +1,32 @@
-import Permission from "../models/Permission";
+import Permission, { PermissionAttributes } from "../models/Permission";
 import UserPermission from "../models/UserPermission";
 
 export async function getUserPermissions(
-  userId: string
-): Promise<Permission[]> {
+  userId: number
+): Promise<PermissionAttributes[] | undefined> {
   try {
-    const userPermissions = await UserPermission.findAll({
+    const foundUserPermissions = await UserPermission.findAll({
       where: {
         userId,
       },
     });
 
-    var permissions: Permission[] = [];
+    if (!foundUserPermissions) {
+      return undefined;
+    }
 
-    userPermissions.map(async (up) => {
-      const permission = await Permission.findByPk(up.permissionId);
-      if (!permission) return;
-      permissions.push(permission);
-    });
+    const userPermissions = foundUserPermissions.map((up) => up.toJSON());
+    const permissions = await Promise.all(
+      userPermissions.map(async (p) => {
+        const permission = await Permission.findByPk(p.permissionId);
+        return permission ? permission.toJSON() : null;
+      })
+    );
 
-    return permissions;
+    return permissions.filter(
+      (permission) => permission !== null
+    ) as PermissionAttributes[];
   } catch (error) {
-    throw {
-      error: "Ocorreu um erro ao buscar permissões deste usuário",
-    };
+    return undefined;
   }
 }

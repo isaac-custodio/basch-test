@@ -1,3 +1,3 @@
 export interface DecodedToken {
-  id: string;
+  id: number;
 }

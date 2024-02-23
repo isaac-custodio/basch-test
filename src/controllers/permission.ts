@@ -1,17 +1,16 @@
-import type { Request, Response } from "express";
 import Permission, { PermissionAttributes } from "../models/Permission";
-import { getUserById } from "../utils/user";
-import { Session } from "express-session";
-import User from "../models/User";
-import UserPermission from "../models/UserPermission";
+
+import type { Request, Response } from "express";
+import { getAllPermissions } from "../utils/permission";
 
 export async function addPermission({ body }: Request, res: Response) {
   try {
     const { description, title }: PermissionAttributes = body;
     const permission = await Permission.create({ description, title });
-    return res
-      .status(200)
-      .json({ message: "Permissão adicionada com sucesso!", data: permission });
+    return res.status(200).json({
+      message: "Permissão adicionada com sucesso!",
+      data: permission.toJSON(),
+    });
   } catch (error) {
     res.status(500).json({ error: "Erro interno no servidor" });
   }
@@ -33,7 +32,7 @@ export async function updatePermission(
 
     return res
       .status(200)
-      .json({ message: "Permissão adicionada com sucesso!", data: updated });
+      .json({ message: "Permissão atualizada com sucesso!" });
   } catch (error) {
     res.status(500).json({ error: "Erro interno no servidor" });
   }
@@ -41,15 +40,25 @@ export async function updatePermission(
 
 export async function removePermission(req: Request, res: Response) {
   try {
+    const id = Number(req.params.id);
+    const removed = await Permission.destroy({ where: { id } });
+
+    if (!removed) {
+      throw res.status(404).json({ error: "Permissão não encontrada" });
+    }
+
+    return res.status(200).json({ message: "Permissão excluída com sucesso" });
   } catch (error) {
-    res.status(500).json({ error: "Erro interno no servidor" });
+    throw res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
 
 export async function listPermissions(req: Request, res: Response) {
   try {
+    const permissions = await getAllPermissions();
+    return res.status(200).json(permissions);
   } catch (error) {
-    res.status(500).json({ error: "Erro interno no servidor" });
+    throw res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
 

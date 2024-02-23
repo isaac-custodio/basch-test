@@ -1,10 +1,13 @@
+import User from "../models/User";
+import Permission from "../models/Permission";
+
 import { Request, Response } from "express";
 import UserPermission from "../models/UserPermission";
 import { getUserPermissions } from "../utils/userPermission";
 
 export async function listUserPermissions(req: Request, res: Response) {
   try {
-    const { userId } = req.params;
+    const userId = Number(req.params.userId);
 
     const permissions = await getUserPermissions(userId);
 
@@ -14,34 +17,59 @@ export async function listUserPermissions(req: Request, res: Response) {
         .json({ error: "Ocorreu um erro ao listar permissões do usuário" });
     }
 
-    res.status(200).json(permissions);
+    return res.status(200).json(permissions);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
 
 export async function addUserPermission(req: Request, res: Response) {
   try {
-    const { userId, permissionId } = req.params;
+    const userId = Number(req.params.userId);
+    const permissionId = Number(req.params.permissionId);
 
-    const uid = Number(userId);
-    const pid = Number(permissionId);
+    const userExists = await User.findByPk(userId);
 
-    const created = await UserPermission.create({
-      userId: uid,
-      permissionId: pid,
+    if (!userExists) {
+      return res
+        .status(404)
+        .json({ error: "Id de usuário fornecido é inválido" });
+    }
+
+    const user = userExists.toJSON();
+
+    const permissionExists = await Permission.findByPk(permissionId);
+
+    if (!permissionExists) {
+      return res
+        .status(404)
+        .json({ error: "Id de permissão fornecido é inválido" });
+    }
+
+    const permission = permissionExists.toJSON();
+
+    const added = await UserPermission.create({
+      userId,
+      permissionId,
     });
 
-    if (!created) {
-      res.status(400).json({
-        error: "Ocorreu um erro ao adicioanr permissão ao usuário",
+    if (!added) {
+      return res.status(400).json({
+        error: "Ocorreu um erro ao adicionar permissão ao usuário",
       });
     }
-  } catch (error) {
-    console.error(error);
 
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(200).json({
+      message: `${user.username} agora tem permissão de ${permission.title}`,
+    });
+  } catch (error: any) {
+    if (error.name && error.name == "SequelizeUniqueConstraintError") {
+      return res
+        .status(400)
+        .json({ error: "Este usuário já possui essa permissão" });
+    }
+
+    return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
 
@@ -54,17 +82,13 @@ export async function removeUserPermission(req: Request, res: Response) {
     });
 
     if (!deleted) {
-      res.status(400).json({
-        error: "Ocorreu um erro ao remover permissão do usuário",
+      return res.status(404).json({
+        error: "Usuário já não possui esta permissão",
       });
     }
 
-    res
-      .status(200)
-      .json({ message: "Permissão removida com sucesso", data: deleted });
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(200).json({ message: "Permissão removida com sucesso" });
+  } catch (error: any) {
+    return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }

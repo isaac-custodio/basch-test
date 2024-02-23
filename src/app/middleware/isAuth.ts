@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 
 import { Request, Response, NextFunction } from "express";
-import { Session } from "express-session";
 import { DecodedToken } from "../../types/auth";
 import { config } from "dotenv";
+import { CustomSessionData } from "..";
 
 config();
 
@@ -13,7 +13,11 @@ if (!JWT_SECRET) {
   throw new Error("JWT SECRET not provided in .env");
 }
 
-export const isAuth = (req: Request, res: Response, next: NextFunction) => {
+export const isAuth = (
+  req: Request & { session: CustomSessionData },
+  res: Response,
+  next: NextFunction
+) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     return res.status(401).json({ message: "Não autorizado" });
@@ -26,9 +30,9 @@ export const isAuth = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decodedToken = jwt.verify(token, JWT_SECRET) as DecodedToken;
-    (req.session as Session).id = decodedToken.id;
+    req.session.userId = decodedToken.id;
     next();
   } catch (error) {
-    return res.status(403).json({ message: "Seu token expirou" });
+    return res.status(403).json({ message: "Token inválido" });
   }
 };

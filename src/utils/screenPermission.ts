@@ -1,29 +1,32 @@
-import Permission from "../models/Permission";
+import Permission, { PermissionAttributes } from "../models/Permission";
 import ScreenPermission from "../models/ScreenPermission";
-import UserPermission from "../models/UserPermission";
 
 export async function getScreenPermissions(
-  screenId: string
-): Promise<Permission[]> {
+  screenId: number
+): Promise<PermissionAttributes[] | undefined> {
   try {
-    const screenPermissions = await ScreenPermission.findAll({
+    const foundScreenPermissions = await ScreenPermission.findAll({
       where: {
         screenId,
       },
     });
 
-    var permissions: Permission[] = [];
+    if (!foundScreenPermissions) {
+      return undefined;
+    }
 
-    screenPermissions.map(async (sp) => {
-      const permission = await Permission.findByPk(sp.screenId);
-      if (!permission) return;
-      permissions.push(permission);
-    });
+    const screenPermissions = foundScreenPermissions.map((up) => up.toJSON());
+    const permissions = await Promise.all(
+      screenPermissions.map(async (p) => {
+        const permission = await Permission.findByPk(p.permissionId);
+        return permission ? permission.toJSON() : null;
+      })
+    );
 
-    return permissions;
+    return permissions.filter(
+      (permission) => permission !== null
+    ) as PermissionAttributes[];
   } catch (error) {
-    throw {
-      error: "Ocorreu um erro ao buscar permissões deste usuário",
-    };
+    return undefined;
   }
 }

@@ -1,3 +1,5 @@
+import hasScreenPermission from "../app/middleware/hasScreenPermission";
+
 import { Router } from "express";
 
 import {
@@ -86,7 +88,7 @@ ScreenRouter.get("/", listScreens);
  *         description: Tela não encontrada
  */
 
-ScreenRouter.get("/:id", findScreenById);
+ScreenRouter.get("/:id", hasScreenPermission, findScreenById);
 
 /**
  * @openapi

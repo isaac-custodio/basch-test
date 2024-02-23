@@ -45,11 +45,7 @@ export const ScreenPermissionRouter = Router();
  *         $ref: '#/components/responses/InternalServerError'
  */
 
-ScreenPermissionRouter.get(
-  "/:screenPermissionId",
-  isAdmin,
-  listScreenPermissions
-);
+ScreenPermissionRouter.get("/:screenId", isAdmin, listScreenPermissions);
 
 /**
  * @swagger
@@ -88,7 +84,7 @@ ScreenPermissionRouter.get(
  */
 
 ScreenPermissionRouter.post(
-  "/:screenPermissionId/:permissionId",
+  "/:screenId/:permissionId",
   isAdmin,
   addScreenPermission
 );
@@ -130,7 +126,7 @@ ScreenPermissionRouter.post(
  */
 
 ScreenPermissionRouter.delete(
-  "/:screenPermissionId/:permissionId",
+  "/:screenId/:permissionId",
   isAdmin,
   removeScreenPermission
 );

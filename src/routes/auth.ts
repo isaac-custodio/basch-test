@@ -1,8 +1,7 @@
 import { Router } from "express";
 
-import { login, getMyUser } from "../controllers/auth";
+import { login, getMyUser, getMyUserPermissions } from "../controllers/auth";
 import { isAuth } from "../app/middleware/isAuth";
-import { getCurrentUserPermissions } from "../controllers/auth";
 
 export const AuthRouter = Router();
 
@@ -101,10 +100,10 @@ AuthRouter.get("/me", isAuth, getMyUser);
  *         $ref: '#/components/responses/InternalServerError'
  */
 
-AuthRouter.get("/me/permissions", isAuth, getCurrentUserPermissions);
+AuthRouter.get("/me/permissions", isAuth, getMyUserPermissions);
 
 /**
- * @openapi
+ *
  * components:
  *   schemas:
  *     UserAttributes:

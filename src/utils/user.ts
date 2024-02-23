@@ -1,16 +1,13 @@
 import User from "../models/User";
 
-export async function getUserById(id: string) {
+export async function getUserById(id: number) {
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      throw { error: "User not found" };
+      return undefined;
     }
-    return user;
+    return user.toJSON();
   } catch (error) {
-    console.error(error);
-    throw {
-      error: "An error occured while trying to find user",
-    };
+    return undefined;
   }
 }

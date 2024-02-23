@@ -1,6 +1,6 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-import session from "express-session";
+import session, { SessionData } from "express-session";
 import swaggerUi from "swagger-ui-express";
 
 import { config } from "dotenv";
@@ -16,6 +16,10 @@ import { UserPermissionRouter } from "../routes/userPermission";
 
 import isAdmin from "./middleware/isAdmin";
 import { ScreenPermissionRouter } from "../routes/screenPermission";
+
+export interface CustomSessionData extends SessionData {
+  userId?: number;
+}
 
 config();
 
@@ -38,22 +42,19 @@ app.use(
     secret: JWT_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: new session.MemoryStore(),
   })
 );
 
 app.use(express.json());
 app.use(cors());
 
+//Routes
 app.use("/", AuthRouter);
 app.use("/permissions", isAuth, PermissionRouter);
 app.use("/screens", isAuth, ScreenRouter);
 app.use("/users", isAuth, UserRouter);
-app.use("/userPermissions/:userId/:permissionId", isAuth, UserPermissionRouter);
-app.use(
-  "/screenPermissions/:screenId/:permissionId",
-  isAuth,
-  isAdmin,
-  ScreenPermissionRouter
-);
+app.use("/userPermissions", isAuth, UserPermissionRouter);
+app.use("/screenPermissions", isAuth, isAdmin, ScreenPermissionRouter);
 
 export default app;

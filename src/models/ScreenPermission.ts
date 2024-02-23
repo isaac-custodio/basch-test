@@ -7,12 +7,9 @@ interface ScreenPermissionAttributes {
   permissionId: number;
 }
 
-class ScreenPermission
-  extends Model<ScreenPermissionAttributes>
-  implements ScreenPermissionAttributes
-{
-  public screenId!: number;
-  public permissionId!: number;
+class ScreenPermission extends Model<ScreenPermissionAttributes> {
+  declare screenId: number;
+  declare permissionId: number;
 }
 
 ScreenPermission.init(

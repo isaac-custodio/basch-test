@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
 import Screen, { ScreenAttributes } from "../models/Screen";
-import { UserAttributes } from "../models/User";
+
+import { NextFunction, Request, Response } from "express";
 import { getScreenById } from "../utils/screen";
 
 export async function addScreen(
@@ -12,18 +12,18 @@ export async function addScreen(
     const { name, description, url }: ScreenAttributes = req.body;
 
     if (!name || !url) {
-      res
+      return res
         .status(400)
         .json({ error: "Verifique os campos obrigatórios  `name` e `url`" });
     }
 
     const screen = await Screen.create({ description, name, url });
 
-    res
+    return res
       .status(200)
       .json({ message: "Tela adicionada com sucesso!", data: screen });
   } catch (error) {
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }
 
@@ -76,11 +76,15 @@ export async function updateScreen(
       { where: { id } }
     );
 
-    res
-      .status(200)
-      .json({ message: "Tela atualizada com sucesso", data: updated });
+    if (!updated) {
+      return res.status(404).json({
+        error: "Tela não encontrada",
+      });
+    }
+
+    return res.status(200).json({ message: "Tela atualizada com sucesso" });
   } catch (error) {
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(500).json({ error });
   }
 }
 
@@ -95,11 +99,11 @@ export async function removeScreen(
     const removed = await Screen.destroy({ where: { id } });
 
     if (!removed) {
-      res.status(404).json({ error: "Tela não encontradas" });
+      return res.status(404).json({ error: "Tela não encontrada" });
     }
 
-    res.status(200).json({ message: "Tela removida com sucesso" });
+    return res.status(200).json({ message: "Tela removida com sucesso" });
   } catch (error) {
-    res.status(500).json({ error: "Erro interno no servidor" });
+    return res.status(500).json({ error: "Erro interno no servidor" });
   }
 }

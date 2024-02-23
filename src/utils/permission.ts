@@ -1,21 +1,29 @@
-import Permission from "../models/Permission";
+import Permission, { PermissionAttributes } from "../models/Permission";
 
 export async function getPermissionById(id: number) {
   try {
-    const permission = await Permission.findByPk(id);
+    const found = await Permission.findByPk(id);
 
-    if (!permission) {
-      throw {
-        error: "Não foi possível encontrar essa permissão",
-      };
+    if (!found) {
+      return undefined;
     }
 
-    return { ...permission };
+    return found.toJSON();
   } catch (error) {
-    console.error(error);
+    return undefined;
+  }
+}
 
-    throw {
-      error: "Erro interno no servidor",
-    };
+export async function getAllPermissions() {
+  try {
+    const found = await Permission.findAll();
+
+    const permissions = found.map((permission) => {
+      return permission && permission.toJSON();
+    });
+
+    return permissions;
+  } catch (error) {
+    return undefined;
   }
 }

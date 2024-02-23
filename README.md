@@ -5,15 +5,10 @@ Esta é uma API de exemplo para demonstrar como criar uma aplicação Node.js co
 ## Instalação
 
 1. Certifique-se de ter o Node.js instalado em sua máquina. Você pode baixá-lo em [nodejs.org](https://nodejs.org/).
-2. Clone este repositório para o seu ambiente local.
-3. No diretório raiz do projeto, faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha os valores das variáveis de ambiente conforme necessário para configurar o projeto.
-4. Execute o seguinte comando para instalar as dependências:
-
-```
-npm install
-```
-
-5. Após a instalação das dependências, crie um banco de dados PostgreSQL conforme necessário para a aplicação.
+2. **Crie um banco de dados PostgreSQL** conforme necessário para a aplicação.
+3. Clone este repositório para o seu ambiente local.
+4. No diretório raiz do projeto, faça uma cópia do arquivo `.env-template` e renomeie-o para `.env`. Preencha as variáveis de ambiente conforme necessário para configurar o projeto, incluindo o nome do banco de dados PostgreSQL.
+5. Execute o seguinte comando para instalar as dependências:
 6. Opcionalmente, você pode executar um build do projeto antes de iniciar o servidor. Para fazer isso, execute o seguinte comando:
 
 ```
@@ -34,7 +29,9 @@ O servidor será iniciado e estará acessível em `http://localhost:{PORT}`. Voc
 
 Além disso, a documentação da API está disponível em `http://localhost:{PORT}/docs`, onde você pode visualizar e testar as rotas da API usando o Swagger UI.
 
-![Fazendo login pelo Swagger](./public/media/gifs/swagger-example.gif)
+## Fazendo login pelo Swagger
+
+![GIF de exemplo](./public/media/gifs/swagger-example.gif)
 
 ## Documentação da API
 

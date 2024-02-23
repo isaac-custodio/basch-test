@@ -12,7 +12,7 @@ export const ScreenPermissionRouter = Router();
 
 /**
  * @openapi
- * /screenPermissions/{screenPermissionId}:
+ * /screenPermissions/{screenId}:
  *   get:
  *     summary: Listar permissões da tela
  *     description: Retorna a lista de permissões associadas a uma tela específica.
@@ -49,7 +49,7 @@ ScreenPermissionRouter.get("/:screenId", isAdmin, listScreenPermissions);
 
 /**
  * @swagger
- * /screenPermissions/{screenPermissionId}/{permissionId}:
+ * /screenPermissions/{screenId}/{permissionId}:
  *   post:
  *     summary: Adicionar permissão à tela
  *     description: Associa uma permissão específica a uma tela específica.
@@ -91,7 +91,7 @@ ScreenPermissionRouter.post(
 
 /**
  * @swagger
- * /screenPermissions/{screenPermissionId}/{permissionId}:
+ * /screenPermissions/{screenId}/{permissionId}:
  *   delete:
  *     summary: Remover permissão da tela
  *     description: Remove a associação entre uma permissão específica e uma tela específica.
